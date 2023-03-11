@@ -1,20 +1,25 @@
-# gym
-Criando um novo projeto de controle de ficha de academia.
+#GYM \n
+Aplicação para gerenciamento de fichas/treinos de academia.
 
-#Docker
+#Docker:
 Container de python e postgresql
 
-#Alembic
-Versionamento do banco atraves do alembic
+#Banco de dados:
+Postgres + asyncpg 
 
-#Login
-segurança de login com JWT
-
-#Back-end
+#Back-end:
 Python + FASTAPI
 
-#Front-end
+#Front-end:
 React.js
 
-#Mobile
+#Mobile:
 Python Flet
+
+#Alembic:
+Versionamento do banco atraves do alembic
+
+#Login:
+segurança de login com JWT
+
+
