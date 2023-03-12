@@ -1,4 +1,4 @@
-from typing import Generator, Optional
+from typing import Generator, Optional, AsyncGenerator
 
 from fastapi import Depends, HTTPException, status, Request, Response
 from jose import jwt, JWTError
@@ -26,6 +26,7 @@ async def get_session() -> Generator:
         yield session
     finally:
         await session.close()
+
 
 
 async def get_current_user(db: Session = Depends(get_session), token: str = Depends(oauthe2_schema)) -> PersonModel:

@@ -1,16 +1,17 @@
-from fastapi import FastAPI
-from starlette.staticfiles import StaticFiles
-from starlette.status import HTTP_302_FOUND
-from fastapi import HTTPException, Response, Request
-from fastapi.responses import JSONResponse
-from starlette.responses import RedirectResponse
-from views import login
-from sqlalchemy.exc import DBAPIError
 from asyncpg.exceptions import StringDataRightTruncationError
+from fastapi import FastAPI
+from fastapi import HTTPException, Request
+from fastapi.responses import JSONResponse
+from sqlalchemy.exc import DBAPIError
+from starlette.responses import RedirectResponse
+from starlette.status import HTTP_302_FOUND
+
+from views import login, seeds
 
 api = FastAPI(title='GYM Goodzera')
 
 api.include_router(login.router, tags=['Login'])
+api.include_router(seeds.router, tags=['Seed'])
 
 
 @api.exception_handler(HTTPException)
