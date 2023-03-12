@@ -7,11 +7,14 @@ ENV TZ=America/Sao_Paulo
 # Criação do diretório de trabalho
 WORKDIR /app
 
-# Copia a aplicação para dentro da imagem
-COPY . .
+# Copia apenas o package.json para dentro da imagem
+COPY package.json .
 
 # Instalação de dependências
 RUN npm install
+
+# Copia o restante da aplicação para dentro da imagem
+COPY . .
 
 # Build da aplicação
 RUN npm run build

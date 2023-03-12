@@ -34,6 +34,8 @@ services:
   frontend:
     build: frontend
     restart: always
+    volumes:
+      - .:/app/frontend
     ports:
       - "3000:3000"
     depends_on:
@@ -44,8 +46,6 @@ services:
     tty: true
     networks:
       - mynetwork
-    volumes:
-      - .:/app/frontend
 
 volumes:
   db-data:
