@@ -5,10 +5,25 @@ from fastapi.responses import JSONResponse
 from sqlalchemy.exc import DBAPIError
 from starlette.responses import RedirectResponse
 from starlette.status import HTTP_302_FOUND
+from fastapi.middleware.cors import CORSMiddleware
 
 from views import login, seeds
 
 api = FastAPI(title='GYM Goodzera')
+
+origins = [
+    "http://localhost",
+    "http://localhost:3001",
+    "http://localhost:8000",
+]
+
+api.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 api.include_router(login.router, tags=['Login'])
 api.include_router(seeds.router, tags=['Seed'])

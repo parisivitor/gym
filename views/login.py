@@ -48,7 +48,7 @@ async def post_person(person: PersonSchemaCreate, db: AsyncSession = Depends(get
 
 
 
-@router.post('/login')
+@router.post('/login', status_code=status.HTTP_200_OK)
 async def login_empregador(response: Response,
         form_data: OAuth2PasswordRequestForm = Depends(),
         db: AsyncSession = Depends(get_session)):
@@ -57,12 +57,12 @@ async def login_empregador(response: Response,
 
 
     if not person:
-        return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User or Password is incorrect")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User or Password is incorrect")
 
     access_token = criar_token_acesso(sub=person.uuid)
     response.set_cookie("access_token", access_token, secure=False, httponly=True)
 
-    return JSONResponse(content={"access_token": criar_token_acesso(sub=person.uuid), "token_type": "bearer"},status_code=status.HTTP_200_OK)
+    return JSONResponse(content={"access_token": criar_token_acesso(sub=person.uuid), "token_type": "bearer"})
 
 
 @router.get('/logado', response_model=PersonSchemasBase)
