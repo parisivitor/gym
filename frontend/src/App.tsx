@@ -1,12 +1,11 @@
 import React from 'react';
 import Button from '@mui/material/Button';
+import Login from './pages/login/login';
 
 function App() {
   return (
-    <div>
-      <Button variant="contained">Testando</Button>
-    </div>
-  );
+    <Login></Login>
+  )
 }
 
 export default App;
